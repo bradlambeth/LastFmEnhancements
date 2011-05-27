@@ -1,0 +1,26 @@
+/* LeftBar to TopMenu */
+#library #content, div.sic #content {padding:2px 15px 15px 15px!important;}
+#content, #tagHead{border-top:none!important; margin-top:50px!important;margin-left:0px!important;}
+#content.sic {padding-top:1px!important;}
+#LastFooter {margin-left:0px!important;}
+
+#secondaryNavigation {position:static!important;width:auto!important;float:left;padding-top:10px!important;} 
+div.betaMessageBlock + #secondaryNavigation {position:static!important;width:auto!important;float:left;padding-top:20px!important;}
+#secondaryNavigation ul li {display:table-cell!important;}
+#secondaryNavigation ul {display:inline!important; }
+#secondaryNavigation li.first a {border-top:1px solid #ccc!important;}
+#secondaryNavigation li a {display:table-cell!important;width:auto!important;white-space:nowrap;padding-right:10px!important;}
+#secondaryNavigation li.current a {padding-top:5px!important; border-bottom:1px #fff!important;}
+
+/* artist library fitting to top menu */
+strong.name {display:block!important;}
+#taste ul.artistsLarge > li:nth-child(5) {clear:left!important;}
+#taste ul.artistsLarge > li {margin-right:3px!important;margin-left:3px!important!;width:24%!important;}
+#library ul.artistsLarge > li:nth-child(6n+1) {clear:left!important;} 
+#library ul.artistsLarge > li {margin-right:7px!important;margin-left:7px!important;width:15%!important;}
+
+div#tasteCocktail {max-width:none!important;}
+
+/* beta page issue */
+span.stationButtonWrapper {background:none!important;}
+

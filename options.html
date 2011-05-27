@@ -1,0 +1,92 @@
+<html>
+	<head>
+		<meta charset="utf-8"><title>Last.Fm Enhancements</title>
+		<style type="text/css">
+
+			/* fancyform styles */
+			.checkbox_checked{background:url(./sources/chk_on.png) no-repeat;cursor:pointer;}
+			.checkbox_unchecked{background:url(./sources/chk_off.png) no-repeat;cursor:pointer;}
+
+			.crirHidden {position:absolute;left:-1000px;}
+
+			body {background:url(http://agata.de/lfmh/bg.png) #CDDEE3 repeat-x;font:75%/150% "Trebuchet MS", "Lucida Grande", "Bitstream Vera Sans", Arial, Helvetica, sans-serif;color:#666666;margin:60px;} 
+			label {padding-left:20px;white-space:nowrap;}
+			h1 {color:#FFF;font-size:18px;font-weight:normal;text-shadow: #0843A8 1px 1px 5px;white-space:nowrap;}
+			img {margin-right:30px;}
+			#floater {margin-right:auto;margin-left:auto;width:500px;background-color:red;}
+			#middle {position:absolute;top:25%;bottom:25%;height:200px;width:500px;}
+			#saveButton {border:0;background:transparent;cursor:pointer;color:#FFF;font-size:16px;text-shadow: #0843A8 1px 1px 3px;float:right;position:relative;top:0px;}
+			
+		</style>		
+	</head>
+<script type="text/javascript">
+
+
+// Saves options to localStorage.
+function saveOptions() {
+	localStorage["weeklyPref"] = document.getElementById("weeklyCheck").checked;
+	localStorage["topMenuPref"] = document.getElementById("topMenuCheck").checked;
+	localStorage["lyricsPref"] = document.getElementById("lyricsCheck").checked;
+
+	chrome.extension.getBackgroundPage().init();
+
+    // change the text of the button.
+	document.getElementById("saveButton").innerHTML = "Saved!";
+
+	$("#saveButton").fadeIn(100).animate({top:"-=20px"},100).animate({top:"+=20px"},100).animate({top:"-=20px"},100)
+	.animate({top:"+=20px"},100).animate({top:"-=20px"},100).animate({top:"+=20px"},100);
+		
+}
+
+// localStorage have the values saved as strings.
+// use this function to convert boolean values.
+function toBool(str) {
+   if ("false" === str) return false;
+   else return str;
+}
+
+// Restores value from localStorage.
+function restoreOptions() {
+	var wC = localStorage["weeklyPref"];
+	var tmC = localStorage["topMenuPref"];
+	var lC = localStorage["lyricsPref"];
+	if ( (null != wC) || (null != tmC) || (null != lC) )
+		document.getElementById("weeklyCheck").checked = toBool(wC); 
+		document.getElementById("topMenuCheck").checked = toBool(tmC);
+		document.getElementById("lyricsCheck").checked = toBool(lC);
+}
+
+function prefChanged() {
+   // change the text of the button to indicate the change.
+   document.getElementById("saveButton").innerHTML = "Save";
+}
+
+</script>
+
+<body onload="restoreOptions()">
+	<div id="floater"><div id="middle">
+
+		<img src="icon_128.png" width="128" height="128" alt="" align="left">
+		<h1>Last.Fm Enhancements</h1>
+
+<form>
+	<label for="topMenuCheck" onclick="prefChanged()">
+		<input type="checkbox" id="topMenuCheck" checked="checked" class="crirHiddenJS"> 
+			Move the leftbar to the top of the page <br></label>
+	<label for="weeklyCheck"  onclick="prefChanged()">
+		<input type="checkbox" id="weeklyCheck" checked="checked" class="crirHiddenJS"> 
+			Display weekly chart tables <br></label>
+	<label for="lyricsCheck"  onclick="prefChanged()">
+		<input type="checkbox" id="lyricsCheck" checked="checked" class="crirHiddenJS"> 
+			Display lyrics on user and music track pages <br></label>
+	
+</form>
+
+<button id="saveButton" onclick="saveOptions()">Save</button>
+
+	</div></div>
+<script type="text/javascript" src="./sources/jquery.min.js"></script>
+<script type="text/javascript" src="./sources/crir.js"></script>
+</body>
+</html>
+

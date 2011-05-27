@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>Last.Fm Enhancements</title></head>
+
+<script type="text/javascript">
+
+var lang="en";
+function setLang(sendResponse,path) {
+	if (path.match(/.*last\.fm.*/)) {
+		lang = "en"; 
+	} else {
+		if (path.match(/.*lastfm\.de.*/)) lang = "de";
+		if (path.match(/.*lastfm\.it.*/)) lang = "it";
+		if (path.match(/.*lastfm\.fr.*/)) lang = "fr";
+		if (path.match(/.*lastfm\.es.*/)) lang = "es";
+		if (path.match(/.*lastfm\.com\.br.*/)) lang = "pt";
+		if (path.match(/.*lastfm\.ru.*/)) lang = "ru";
+		if (path.match(/.*lastfm\.pl.*/)) lang = "pl";
+		if (path.match(/.*lastfm\.jp.*/)) lang = "jp";
+		if (path.match(/.*cn\.last.fm.*/)) lang = "cn";
+		if (path.match(/.*lastfm\.se.*/)) lang = "se";
+		if (path.match(/.*lastfm\.com\.tr.*/)) lang = "tr";
+	}
+	sendResponse(lang);
+	
+}
+
+weeklyPref = toBool(localStorage["weeklyPref"]);
+topMenuPref = toBool(localStorage["topMenuPref"]);
+lyricsPref = toBool(localStorage["lyricsPref"]);
+
+function fetchLyrics(sendResponse, url) {
+
+	function handleStateChange(response) {		
+		if (xhr.readyState == 4) {
+        	if (xhr.status == 200) {
+		
+			eval(xhr.responseText);	
+			try{
+				var found = song['lyrics'] != "Not found";
+				var lUrl = song['url'];
+			} catch(e){ };	
+
+			if (found) {
+				var xhrL = new XMLHttpRequest();
+				xhrL.open('GET', lUrl, true);
+				xhrL.onreadystatechange = function(responseL) {
+					if (xhrL.readyState == 4) {
+						if (xhrL.status == 200) {
+							var matches = /<div class='lyricbox' ?>(<div class='rtMatcher'>.*?<\/div>)?(.*?)<\/?div/g(xhrL.responseText.replace(/\n/g, ""));
+							var found = matches != null && matches.length > 0;
+							if (matches[2].match(/&#*/)) { sendResponse(found ? matches[2].replace(/<i>&#85;&#110;&#102;&#111;(.*?)<\/i>/g,"<i>Unfortunately, we are not licensed to display the full lyrics for this song at the moment. Hopefully we will be able to in the future.</i>").replace(/<.*?(src|href)=\"(.*?)".*?>.*?/,"").replace(/<\/a>/,"") : null);
+							} else {
+								 matches = /<div class='lyricbox' ?>(<div class='rtMatcher'>.*?<\/div>)?(.*?)<\/?div(.*?)<div class='lyricbox' ?>(<div class='rtMatcher'>.*?<\/div>)?(.*?)<\/?div/g(xhrL.responseText.replace(/\n/g, ""));
+								sendResponse(found ? matches[5] : null); }
+						}
+					}
+				}
+				xhrL.send(); 
+			}
+			else {
+				sendResponse(null);
+				}
+			}
+		}
+	}
+
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', url, true);	
+	xhr.onreadystatechange = handleStateChange;
+	xhr.send();
+};
+
+
+
+chrome.extension.onRequest.addListener(
+		function(request, sender, sendResponse) {
+			switch(request.name)
+			{
+			case "getPreferences":				
+			sendResponse({ 
+				prefWeekly : this.weeklyPref,
+				prefTopMenu : this.topMenuPref,
+				prefLyrics : this.lyricsPref});
+			break;			
+			case "fetchLyrics":
+				fetchLyrics(sendResponse,request.url);
+			break;
+			case "fetchLang":
+				setLang(sendResponse,request.path);
+			break;
+			} 
+		} 
+	);
+
+function toBool(str) {
+   		if ("false" == str) return false;
+   		else return str;
+}
+
+function init() {
+	weeklyPref = toBool(localStorage["weeklyPref"]);
+	topMenuPref = toBool(localStorage["topMenuPref"]);
+	lyricsPref = toBool(localStorage["lyricsPref"]);
+}
+
+</script>
+<body>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+   "background_page": "background.html",
+   "content_scripts": [ {
+      "css": [ "style.css" ],
+      "js": [ "sources/jquery.min.js", "LastFmEnhancements.js", "LastFmRefresh.js" ],
+      "matches": [ "http://last.fm/*", "http://*.last.fm/*", "http://lastfm.de/*", "http://*.lastfm.de/*", "http://beta.last.fm/*", "http://*.lastfm.com.br/*", "http://lastfm.com.br/*", "http://*.lastfm.com.tr/*", "http://lastfm.com.tr/*", "http://*.lastfm.es/*", "http://lastfm.es/*", "http://*.lastfm.fr/*", "http://lastfm.fr/*", "http://*.lastfm.it/*", "http://lastfm.it/*", "http://*.lastfm.jp/*", "http://lastfm.jp/*", "http://cn.last.fm/*", "http://lastfm.pl/*", "http://*.lastfm.pl/*", "http://lastfm.ru/*", "http://*.lastfm.ru/*", "http://lastfm.se/*", "http://*.lastfm.se/*" ]
+   } ],
+   "description": "adds auto update of recently played tracks, lyrics, listening-now status of friends, weekly charts and more.",
+   "icons": {
+      "128": "icon_128.png",
+      "32": "icon_32.png",
+      "48": "icon_48.png",
+      "64": "icon_64.png"
+   },
+   "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBL8QgkMZo816bnwkT/+rRJ+W7m0byulvJx2GJYnvWgp/zv9p8FePuQG4wmSG2nCE7omCYpXeJkHNl5xEFFNYokjazYfmrKBFr0oulmoA+jPAcC40V2k+jt9qyGP8KXdwxXSBtAzSeKjoFUyi+EoYnhO0tpDeg9vVgmhxA0H3Q1QIDAQAB",
+   "name": "Last.Fm Enhancements",
+   "options_page": "options.html",
+   "permissions": [ "http://lyrics.wikia.com/*" ],
+   "update_url": "http://clients2.google.com/service/update2/crx",
+   "version": "1.8.3.6"
+}

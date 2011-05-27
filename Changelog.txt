@@ -1,0 +1,27 @@
+// Changelog 1.0 08.04.2010: 
+// - Replaces the "Listening Now" status of friends with the name of the artist and the song they are listening to
+// - Moves the left menu bar to the top of the page
+// - Updates recently played track lists every half minute without having to reload the page
+// - Removes an amount of known ads from Last.FM without leaving blank space like AdBlock
+// - Adds top albums to userpage
+// Changelog 1.1-1.3 12.04.2010:
+// - Fixes design issues with top menu and beta pages, Removes background ads, Adds weekly charts to profile page
+// Changelog 1.4 14.04.2010:
+// - Adds options menu
+// Changelog 1.5 15.04.2010:
+// - Switched from MooTools to jQuery
+// Changelog 1.6 16.04.2010:
+// - romantic stuff, don't ask
+// Changelog 1.7.2 16.04.2010:
+// - album art zoom from 300x300 Last.fm database, added black background
+// Changelog 1.8 21.05.2010:
+// - added lyrics to /music/ and /user/ pages
+// - fixed false position of weekly charts when user is logged in
+// Changelog 1.8.1 22.05.2010:
+// - fixed bilingual lyrics
+// - fixed broken relative links
+// Changelog 1.8.2 23.05.2010:
+// - added lyrics to option menu
+// - added lyrics refresh
+// Changelog 1.8.3 23.05.2010:
+// - faster loading of top menu
