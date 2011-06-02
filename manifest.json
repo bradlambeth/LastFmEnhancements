@@ -12,10 +12,8 @@
       "48": "icon_48.png",
       "64": "icon_64.png"
    },
-   "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBL8QgkMZo816bnwkT/+rRJ+W7m0byulvJx2GJYnvWgp/zv9p8FePuQG4wmSG2nCE7omCYpXeJkHNl5xEFFNYokjazYfmrKBFr0oulmoA+jPAcC40V2k+jt9qyGP8KXdwxXSBtAzSeKjoFUyi+EoYnhO0tpDeg9vVgmhxA0H3Q1QIDAQAB",
    "name": "Last.Fm Enhancements",
    "options_page": "options.html",
    "permissions": [ "http://lyrics.wikia.com/*" ],
-   "update_url": "http://clients2.google.com/service/update2/crx",
    "version": "1.8.3.6"
 }
